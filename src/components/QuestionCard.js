@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import {formatDate } from "../utils/helpers"
 
-const Question = (props) => {
+const QuestionCard = (props) => {
 
   const navigate = useNavigate();
   
@@ -36,4 +36,4 @@ function mapStateToProps({ questions }, { id }) {
   };
 }
 
-export default connect(mapStateToProps)(Question);
+export default connect(mapStateToProps)(QuestionCard);

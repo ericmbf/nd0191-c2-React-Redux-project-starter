@@ -1,9 +1,9 @@
-import { hideLoading, showLoading } from "react-redux-loading-bar"
-import { saveQuestion } from "../utils/api"
-
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS"
-export const TOGGLE_QUESTION = "TOGGLE_QUESTION"
 export const SAVE_QUESTION = "SAVE_QUESTION"
+export const ANSWER_QUESTION = "ANSWER_QUESTION"
+
+export const ANSWER_ONE = "optionOne";
+export const ANSWER_TWO = "optionTwo";
 
 export function receiveQuestions(questions) {
     return {
@@ -12,12 +12,12 @@ export function receiveQuestions(questions) {
     };
 }
 
-export function toggleQuestion(info) {
+export function answerQuestion(info) {
     return {
-        type: TOGGLE_QUESTION,
-        id: info.id, 
-        hasLiked: info.hasLiked,
-        authedUser: info.authedUser
+        type: ANSWER_QUESTION,
+        authedUser: info.authedUser, 
+        qid: info.qid,
+        answer: info.answer
     };
 }
 
@@ -25,40 +25,5 @@ export function addQuestion(tweet) {
     return {
         type: SAVE_QUESTION,
         tweet: tweet
-    };
-}
-
-export function handleToggleQuestion(info) {
-    // return (dispatch) => {
-    //     saveLikeToggle(info)
-    //         .then(() => {
-    //             dispatch(toggleQuestion(info));
-    //         })
-    //         .catch((e) => {
-    //             console.warn("Error in handleToggleQuestion: ", e);
-    //             alert("There was an error liking the tweet. Try again.");
-    //         });
-    // };
-}
-
-export function handleAddQuestion(text, replyingTo) {
-    return (dispatch, getState) => {
-        const {authedUser} = getState();
-
-        dispatch(showLoading());
-
-        saveQuestion({
-            text,
-            author: authedUser,
-            replyingTo
-        })
-            .then((tweet) => {
-                dispatch(addQuestion(tweet));
-                dispatch(hideLoading());
-            })
-            .catch((e) => {
-                console.warn("Error in Add a new tweet: ", e);
-                alert("There was an error in add a new tweet. Try again.");
-            });
     };
 }

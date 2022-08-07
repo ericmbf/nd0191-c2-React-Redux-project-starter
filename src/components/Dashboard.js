@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Question from "./Question"
+import QuestionCard from "./QuestionCard"
 
 function isNewQuestion(array, isValid) {
   return array.reduce(([pass, fail], elem) => {
@@ -13,7 +13,7 @@ const Dashboard = (props) => {
     <ul className="dashboard-list">
       {
         props.newQuestionsId && props.newQuestionsId.map((id) => {
-          return <Question key={id} id={id} />
+          return <QuestionCard key={id} id={id} />
         })
       }
     </ul>
@@ -21,7 +21,7 @@ const Dashboard = (props) => {
     <ul className="dashboard-list">
       {
           props.doneQuestionsId && props.doneQuestionsId.map((id) => {
-          return <Question key={id} id={id} />
+          return <QuestionCard key={id} id={id} />
         })
       }
     </ul>

@@ -5,7 +5,7 @@ import Dashboard from "./Dashboard";
 import { LoadingBar } from "react-redux-loading-bar"
 import NewTweet from "./NewTweet";
 import LoginPage from "./LoginPage";
-import TweetPage from "./TweetPage";
+import QuestionPage from "./QuestionPage";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Nav from "./Nav";
 
@@ -31,7 +31,7 @@ const App = (props) => {
         <Nav/>
         <Routes>
           <Route path="/" exact element={<Dashboard/>}/>
-          {/* <Route path="/question/:id" exact element={<QuestionPage/>}/> */}
+          <Route path="/question/:id" exact element={<QuestionPage/>}/>
           {/* <Route path="/new" exact element={<NewTweet/>}/> */}
         </Routes>
       </div>
@@ -46,7 +46,7 @@ const App = (props) => {
           <div className="container">
             {
               props.loading === true ? null : 
-              props.loggedIn === true ? <AppComponent/> : <AppComponent/>
+              props.loggedIn === true ? <AppComponent/> : <LoginPage/>
             }
           </div>
   </Fragment>
@@ -55,7 +55,7 @@ const App = (props) => {
 
 const mapStateToProps = ({ authedUser, users, questions }) => {
   return {
-    loading: users === {},
+    loading: authedUser === null,
     loggedIn: authedUser !== null
   }
 }
