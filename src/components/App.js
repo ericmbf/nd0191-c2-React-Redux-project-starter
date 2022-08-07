@@ -31,7 +31,7 @@ const App = (props) => {
         <Nav/>
         <Routes>
           <Route path="/" exact element={<Dashboard/>}/>
-          {/* <Route path="/tweet/:id" exact element={<TweetPage/>}/> */}
+          {/* <Route path="/question/:id" exact element={<QuestionPage/>}/> */}
           {/* <Route path="/new" exact element={<NewTweet/>}/> */}
         </Routes>
       </div>

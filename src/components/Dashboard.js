@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Tweet from "./Tweet"
+import Question from "./Question"
 
 function isNewQuestion(array, isValid) {
   return array.reduce(([pass, fail], elem) => {
@@ -8,15 +8,12 @@ function isNewQuestion(array, isValid) {
 }
 
 const Dashboard = (props) => {
-
-
   return <div>
     <h3 className="center">New Questions</h3>
     <ul className="dashboard-list">
       {
         props.newQuestionsId && props.newQuestionsId.map((id) => {
-          return <li id={id}>{id}</li>
-          // return <Tweet key={id} id={id} />
+          return <Question key={id} id={id} />
         })
       }
     </ul>
@@ -24,8 +21,7 @@ const Dashboard = (props) => {
     <ul className="dashboard-list">
       {
           props.doneQuestionsId && props.doneQuestionsId.map((id) => {
-          return <li id={id}>{id}</li>
-          // return <Tweet key={id} id={id} />
+          return <Question key={id} id={id} />
         })
       }
     </ul>
