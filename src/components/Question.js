@@ -6,22 +6,12 @@ const Question = (props) => {
 
   const navigate = useNavigate();
   
-  // const { name, avatar, timestamp, text, hasLiked, likes, replies, id, parent } =
-  const {id, author, timestamp} = props.question;
+  const { author, timestamp} = props.question;
+  const id = props.id;
 
   const toParent = (e, id) => {
-    // e.preventDefault();
-    // navigate(`/question/${id}`);
-  }
-
-  const handleLike = (e) => {
-    // e.preventDefault();
-    // props.dispatch(handleToggleTweet({
-    //   id: props.id,
-    //   hasLiked: props.question.hasLiked,
-    //   authedUser: props.authedUser
-    // }
-    // ));
+    e.preventDefault();
+    navigate(`/question/${id}`);
   }
 
   return <Link to={`/question/${id}`} className="question">
@@ -29,7 +19,7 @@ const Question = (props) => {
       <div>
         <span>{author}</span>
         <span>{formatDate(timestamp)}</span>
-        <button>Show</button>
+        <button onClick={(e) => toParent(e, id)}>Show</button>
       </div>
     </div>
   </Link>
@@ -41,8 +31,8 @@ function mapStateToProps({ questions }, { id }) {
   return {
     question: question ? {
       author: question.author,
-      timestamp: question.timestamp
-     } : null,
+      timestamp: question.timestamp,
+    } : null,
   };
 }
 
