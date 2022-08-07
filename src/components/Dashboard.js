@@ -1,36 +1,46 @@
 import { connect } from "react-redux";
 import Tweet from "./Tweet"
 
+function isNewQuestion(array, isValid) {
+  return array.reduce(([pass, fail], elem) => {
+    return isValid(elem) ? [[...pass, elem], fail] : [pass, [...fail, elem]];
+  }, [[], []]);
+}
+
 const Dashboard = (props) => {
 
-  console.log(props.questions);
 
   return <div>
     <h3 className="center">New Questions</h3>
     <ul className="dashboard-list">
       {
-        props.newQuestions && props.newQuestions.map((id) => {
-          return <Tweet key={id} id={id} />
+        props.newQuestionsId && props.newQuestionsId.map((id) => {
+          return <li id={id}>{id}</li>
+          // return <Tweet key={id} id={id} />
         })
       }
     </ul>
     <h3 className="center">Done</h3>
-    {/* <ul className="dashboard-list">
+    <ul className="dashboard-list">
       {
-        props.tweetIds.map((id) => {
-          return <Tweet key={id} id={id} />
+          props.doneQuestionsId && props.doneQuestionsId.map((id) => {
+          return <li id={id}>{id}</li>
+          // return <Tweet key={id} id={id} />
         })
       }
-    </ul> */}
+    </ul>
   </div>;
 };
 
 function mapStateToProps({ questions, authedUser }) {
+  
+  const [newQuestionsId, doneQuestionsId] = isNewQuestion(Object.keys(questions),
+    (id) => !questions[id].optionOne.votes.includes(authedUser) &&
+    !questions[id].optionTwo.votes.includes(authedUser));
+  
   return {
-    newQuestions: questions ? Object.keys(questions).filter((id) =>
-    (!questions[id].optionOne.votes.contains(authedUser) &&
-      !questions[id].optionTwo.votes.contains(authedUser))) : null,
-    doneQuestions: null
+    newQuestionsId: questions ? newQuestionsId : null,
+    doneQuestionsId: questions ? doneQuestionsId: null
   }
 }
 
