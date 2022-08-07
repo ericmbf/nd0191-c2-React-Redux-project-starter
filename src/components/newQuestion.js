@@ -6,8 +6,8 @@ import { useState } from "react";
 
 const QuestionPage = ({ dispatch, id }) => {
 
-    const [optionOne, setOptionOne] = useState("asd");
-    const [optionTwo, setOptionTwo] = useState("asd");
+    const [optionOne, setOptionOne] = useState("");
+    const [optionTwo, setOptionTwo] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
