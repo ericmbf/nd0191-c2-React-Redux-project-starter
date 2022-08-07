@@ -226,6 +226,16 @@ a {
   flex-direction: column;
 }
 
+.new-question > label{
+  text-align: left;
+  margin: 2px;
+}
+
+.new-question > input{
+  text-align: left;
+  margin: 2px;
+}
+
 .textarea {
   border-radius: 4px;
   border: 1px solid #dad7d7;

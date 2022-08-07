@@ -3,11 +3,11 @@ import { handleInitialData } from "../actions/shared";
 import { connect } from "react-redux";
 import Dashboard from "./Dashboard";
 import { LoadingBar } from "react-redux-loading-bar"
-import NewTweet from "./NewTweet";
 import LoginPage from "./LoginPage";
 import QuestionPage from "./QuestionPage";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Nav from "./Nav";
+import NewQuestion from "./newQuestion";
 
 const App = (props) => {
 
@@ -32,7 +32,7 @@ const App = (props) => {
         <Routes>
           <Route path="/" exact element={<Dashboard/>}/>
           <Route path="/question/:id" exact element={<QuestionPage/>}/>
-          {/* <Route path="/new" exact element={<NewTweet/>}/> */}
+          <Route path="/new" exact element={<NewQuestion/>}/>
         </Routes>
       </div>
   )});

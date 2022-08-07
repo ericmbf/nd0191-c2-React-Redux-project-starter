@@ -1,5 +1,5 @@
 import { getInitialData } from "../utils/api"
-import { receiveQuestions } from "./questions"
+import { addQuestion, receiveQuestions } from "./questions"
 import { receiveUsers } from "./users"
 import { showLoading, hideLoading} from "react-redux-loading-bar"
 import { setAuthedUser } from "./authedUser"
@@ -40,8 +40,8 @@ export function handleAnswerQuestion(info) {
                 dispatch(hideLoading());
             })
             .catch((e) => {
-                console.warn("Error in Add a new tweet: ", e);
-                alert("There was an error in add a new tweet. Try again.");
+                console.warn("Error in Save the answer: ", e);
+                alert("There was an error in save the answer. Try again.");
             });
     };
 }

@@ -68,7 +68,7 @@ const LoginPage = ({dispatch, users}) => {
             }
             }/>
             <h3 className="center">Log In</h3>
-            <form className="new-tweet" onSubmit={handleSubmit}>
+            <form className="new-question" onSubmit={handleSubmit}>
               <label>Username</label>
               <input className="input-user"
                 placeholder="Put your username here"
