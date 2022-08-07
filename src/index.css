@@ -89,13 +89,19 @@ a {
   margin: 10px;
 }
 
+.big-avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50px;
+  margin: 10px;
+}
+
 .question {
   width: 200px;
   height: 100px;
   max-width: 590px;
   display: inline-block;
   margin: 10px 10px;
-  border: 1px solid #dad7d7;
   border-radius: 3px;
   cursor: pointer;
 }
@@ -104,6 +110,40 @@ a {
   margin: 10px;
   display: flex;
   flex-direction: column;
+}
+
+.question-response {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.question-option {
+  display: inline-block;
+  width: calc(50% - 4px);
+  margin: 0 auto;
+}
+
+.question-option > span{
+  display: block;
+  width: 90%;
+  margin: 2%;
+}
+
+.question-option > button{
+  display: block;
+  width: 90%;
+  margin-left: 20px;
+  border: none;
+  background-color: #04AA6D;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 20px;
+}
+
+.question-option > button:hover{
+  background-color: #004d31;
 }
 
 /* Hacky but less typing in the video */
