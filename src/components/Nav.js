@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-const Nav = () => {
+const Nav = (props) => {
+
+    const { name, avatar } = props;
 
     return (
         <div className="topnav">
@@ -8,11 +11,22 @@ const Nav = () => {
             <Link to="/leaderboard">Leaderboard</Link>
             <Link to="/new">New</Link>
             <div className="topnav-right">
-                <Link to="/user/:id">User</Link>
+                <a>
+                    {avatar && (
+                        <img className="topnav-avatar" src={props.avatar} />)}
+                    <span>{name}</span>
+                </a>
                 <Link to="/login">Logout</Link>
             </div>
         </div>
     );
 };
 
-export default Nav;
+function mapStateToProps({ users, authedUser }) {
+    return {
+        name: authedUser ? authedUser : null,
+        avatar: authedUser && users ? users[authedUser].avatarURL : null
+    }
+}
+
+export default connect(mapStateToProps)(Nav);
