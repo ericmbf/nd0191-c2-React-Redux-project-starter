@@ -9,35 +9,40 @@ const Leaderboard = (props) => {
     <div className="leaderboard center">
       <h2>Leaderboard</h2>
       <table>
-        <tr>
-          <th>Users</th>
-          <th>Answers</th>
-          <th>Created</th>
-        </tr>
-        {
-          Object.keys(users).map((id) => {
-            const user = users[id];
-            return (
-              <tr key={id}>
-                <td>
-                  <div className="row-table">
-                    <img className="avatar" src={user.avatarURL}></img>
-                    <div className="row-user-data">
-                      <span className="wpr">{user.name}</span>
-                      <span className="wpr">{user.id}</span>
+        <thead>
+          <tr>
+            <th>Users</th>
+            <th>Answers</th>
+            <th>Created</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            Object.keys(users).map((id) => {
+              const user = users[id];
+              return (
+                <tr key={id}>
+                  <td>
+                    <div className="row-table">
+                      <img className="avatar" src={user.avatarURL}></img>
+                      <div className="row-user-data">
+                        <span className="wpr">{user.name}</span>
+                        <span className="wpr">{user.id}</span>
+                      </div>
                     </div>
-                  </div>
-                </td>
-                <td>
-                  {Object.keys(user.answers).length}
-                </td>
-                <td>
-                  {user.questions.length}
-                </td>
-              </tr>
-            );
-          })
-        }
+                  </td>
+                  <td>
+                    {Object.keys(user.answers).length}
+                  </td>
+                  <td>
+                    {user.questions.length}
+                  </td>
+                </tr>
+              );
+            })
+          }
+
+        </tbody>
       </table>
     </div>
   );
