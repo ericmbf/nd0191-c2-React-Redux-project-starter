@@ -328,3 +328,7 @@ td > div > *{
   margin: 5px;
   display: block;
 }
+
+.button-question.active{
+  background-color: #004d31;
+}

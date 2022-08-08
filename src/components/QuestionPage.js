@@ -17,7 +17,7 @@ const withRouter = (Component) => {
 const QuestionPage = (props) => {
 
     const { author, avatar, optionOne, optionTwo, done, votes1, percent1, 
-        votes2, percent2 } = props;
+        votes2, percent2, active1, active2 } = props;
     const { id } = props.router.params;
     const navigate = useNavigate();
     
@@ -41,40 +41,50 @@ const QuestionPage = (props) => {
         )
     })
 
-    return <div className="center">
+    return (
+        <div className="center">
         <h3>Poll by {author}</h3>
         <img className="big-avatar" src={avatar} />
         <h2>Would You Rather</h2>
         <div className="question-response">
             <div className="question-option">
                 <span>{optionOne}</span>
-                <button id={ANSWER_ONE} onClick={(e) => handleAnswer(e)}>Click</button>
+                <button className={`button-question ${active1 ? "active" : ""}`}
+                    id={ANSWER_ONE} onClick={(e) => handleAnswer(e)}>
+                    Click
+                </button>
                 {
                     done && (<VoteAndPercent votes={votes1} percent={percent1}/>) 
                 }
             </div>
             <div className="question-option">
                 <span>{optionTwo}</span>
-                <button id={ANSWER_TWO} onClick={(e) => handleAnswer(e)}>Click</button>
+                <button className={`button-question ${active2 ? "active" : ""}`}
+                    id={ANSWER_TWO} onClick={(e) => handleAnswer(e)}>
+                    Click
+                </button>
                 {
                     done && (<VoteAndPercent votes={votes2} percent={percent2}/>) 
                 }
             </div>
         </div>
-    </div>;
+    </div>
+    )
 };
 
 function mapStateToProps({ questions, users, authedUser }, props) {
     const { id } = props.router.params;
     const question = questions !== {} ? questions[id] : null;
     const avatar = question ? users[question.author].avatarURL : null;
+    const done =  questions[id].optionOne.votes.includes(authedUser) ||
+        questions[id].optionTwo.votes.includes(authedUser);
+
     return {
         author: question ? questions[id].author : null,
         avatar: question ? avatar : null,
         optionOne: question ? questions[id].optionOne.text : null,
         optionTwo: question ? questions[id].optionTwo.text : null,
-        done: questions[id].optionOne.votes.includes(authedUser) ||
-            questions[id].optionTwo.votes.includes(authedUser),
+        done: done,
         votes1: questions[id].optionOne.votes.length,
         percent1: questions[id].optionOne.votes.length /
             (questions[id].optionOne.votes.length + 
@@ -83,6 +93,8 @@ function mapStateToProps({ questions, users, authedUser }, props) {
         percent2: questions[id].optionTwo.votes.length /
             (questions[id].optionOne.votes.length + 
             questions[id].optionTwo.votes.length),
+        active1: questions[id].optionOne.votes.includes(authedUser),
+        active2: questions[id].optionTwo.votes.includes(authedUser)
     }
 }
 
