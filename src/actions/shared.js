@@ -8,9 +8,6 @@ import { saveQuestionAnswer } from "../utils/api"
 import { saveQuestion } from "../utils/api"
 import { addQuestionToUser } from "./users"
 
-import { setAuthedUser } from "../actions/authedUser";
-const AHUT_ID = "sarahedo"
-
 export function handleInitialData() {
     return (dispatch) => {
         dispatch(showLoading());
@@ -18,8 +15,6 @@ export function handleInitialData() {
             dispatch(receiveUsers(users));
             dispatch(receiveQuestions(questions));
             dispatch(hideLoading());
-
-            dispatch(setAuthedUser(AHUT_ID));
         })
     }
 }
