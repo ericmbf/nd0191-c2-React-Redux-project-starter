@@ -6,3 +6,5 @@ export function setAuthedUser(id) {
         id: id
     };
 }
+
+module.exports = setAuthedUser;
