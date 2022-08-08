@@ -281,3 +281,45 @@ a {
 .dashboard-list {
   border: 1px solid #dad7d7;
 }
+
+.leaderboard {
+  padding-top: 10px;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+td > div {
+  display: inline-block;
+}
+
+td > div > *{
+  vertical-align: middle;
+}
+
+.wpr
+{
+    float:left;
+    clear:both;
+}
+
+.row-table {
+   display: flex;
+}
+
+.row-user-data {
+  margin: 15px;
+}

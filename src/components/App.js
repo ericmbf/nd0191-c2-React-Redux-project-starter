@@ -8,6 +8,7 @@ import QuestionPage from "./QuestionPage";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Nav from "./Nav";
 import NewQuestion from "./newQuestion";
+import Leaderboard from "./Leaderboard";
 
 const App = (props) => {
 
@@ -33,6 +34,7 @@ const App = (props) => {
           <Route path="/" exact element={<Dashboard/>}/>
           <Route path="/question/:id" exact element={<QuestionPage/>}/>
           <Route path="/new" exact element={<NewQuestion/>}/>
+          <Route path="/leaderboard" exact element={<Leaderboard/>}/>
         </Routes>
       </div>
   )});

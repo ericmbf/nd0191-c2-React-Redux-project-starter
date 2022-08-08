@@ -39,7 +39,7 @@ let users = {
     id: 'zoshikanlu',
     password:'pass246',
     name: 'Zenobia Oshikanlu',
-    avatarURL: null,
+    avatarURL: "https://www.w3schools.com/howto/img_avatar.png",
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
     },

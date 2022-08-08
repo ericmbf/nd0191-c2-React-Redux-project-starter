@@ -5,8 +5,8 @@ import { setAuthedUser } from "../actions/authedUser";
 
 const LoginPage = ({dispatch, users}) => {
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('sarahedo');
+  const [password, setPassword] = useState("password123");
   const [error, setError] = useState(false);
 
   const navigate = useNavigate();
@@ -15,8 +15,8 @@ const LoginPage = ({dispatch, users}) => {
     let validUser = null;
     
     Object.keys(users).map(id => {
-      if(users[id].id == username && 
-        users[id].password == password){
+      if(users[id].id === username && 
+        users[id].password === password){
           validUser = users[id];
           return
         }
