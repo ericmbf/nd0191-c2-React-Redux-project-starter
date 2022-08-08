@@ -323,3 +323,8 @@ td > div > *{
 .row-user-data {
   margin: 15px;
 }
+
+.vote-percent > span{
+  margin: 5px;
+  display: block;
+}
