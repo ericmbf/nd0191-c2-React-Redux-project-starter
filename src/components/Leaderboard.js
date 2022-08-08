@@ -3,7 +3,7 @@ import { formatDate } from "../utils/helpers"
 
 const Leaderboard = (props) => {
 
-  const { users, questions } = props;
+  const { users, orderUsersId } = props;
 
   return (
     <div className="leaderboard center">
@@ -18,7 +18,7 @@ const Leaderboard = (props) => {
         </thead>
         <tbody>
           {
-            Object.keys(users).map((id) => {
+            orderUsersId.map((id) => {
               const user = users[id];
               return (
                 <tr key={id}>
@@ -41,16 +41,20 @@ const Leaderboard = (props) => {
               );
             })
           }
-
         </tbody>
       </table>
     </div>
   );
 };
 
-function mapStateToProps({ users, questions }) {
+function mapStateToProps({ users }) {
+  const orderUsers = Object.keys(users).sort(
+    (a,b) =>  (Object.keys(users[b].answers).length + users[b].questions.length) -
+      (Object.keys(users[a].answers).length + users[a].questions.length));
+
   return {
     users: users !== {} ? users : null,
+    orderUsersId: users !== {} ? orderUsers: null
   };
 }
 
