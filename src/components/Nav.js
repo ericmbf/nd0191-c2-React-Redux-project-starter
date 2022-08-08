@@ -18,7 +18,7 @@ const Nav = (props) => {
         <div className="topnav">
             <Link to="/">Home</Link>
             <Link to="/leaderboard">Leaderboard</Link>
-            <Link to="/new">New</Link>
+            <Link to="/add">New</Link>
             <div className="topnav-right">
                 <a>
                     {avatar && (

@@ -35,7 +35,7 @@ const App = (props) => {
             <Nav/>
             <QuestionPage />
           </RequireAuth>} />
-        <Route path="/new" exact
+        <Route path="/add" exact
           element={<RequireAuth>
             <Nav/>
             <NewQuestion />
