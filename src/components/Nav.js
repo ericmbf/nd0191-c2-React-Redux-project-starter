@@ -1,4 +1,4 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser"
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,7 @@ const Nav = (props) => {
             <div className="topnav-right">
                 <a>
                     {avatar && (
-                        <img className="topnav-avatar" src={props.avatar} />)}
+                        <img className="topnav-avatar" alt="avatar" src={props.avatar} />)}
                     <span>{name}</span>
                 </a>
             <a onClick={handleLogOut} >Logout</a>

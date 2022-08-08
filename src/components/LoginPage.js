@@ -24,7 +24,7 @@ const LoginPage = ({ dispatch, users }) => {
   return (
     <div>
       <h1 className="center">Employee Polls</h1>
-      <img className="center" src="https://www.applauz.me/hubfs/blog_help-center_when-you-should-use-company-polls-on-applauz-fimage-1.jpg"
+      <img className="center" alt={"logIn"} src="https://www.applauz.me/hubfs/blog_help-center_when-you-should-use-company-polls-on-applauz-fimage-1.jpg"
         style={{
           display: "block",
           marginLeft: "auto",

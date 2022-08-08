@@ -1,5 +1,3 @@
-import { showLoading, hideLoading} from "react-redux-loading-bar"
-
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS"
 export const ADD_QUESTION = "ADD_QUESTION"
 export const ANSWER_QUESTION = "ANSWER_QUESTION"

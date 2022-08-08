@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-import { formatDate } from "../utils/helpers"
 
 const Leaderboard = (props) => {
 
@@ -24,7 +23,7 @@ const Leaderboard = (props) => {
                 <tr key={id}>
                   <td>
                     <div className="row-table">
-                      <img className="avatar" src={user.avatarURL}></img>
+                      <img className="avatar" alt="avatar" src={user.avatarURL}></img>
                       <div className="row-user-data">
                         <span className="wpr">{user.name}</span>
                         <span className="wpr">{user.id}</span>

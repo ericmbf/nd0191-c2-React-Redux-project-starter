@@ -27,8 +27,8 @@ export function handleAnswerQuestion(info) {
 
         info.authedUser = authedUser;
 
-        saveQuestionAnswer(info).
-        then(() => {
+        saveQuestionAnswer(info)
+        .then(() => {
                 dispatch(answerQuestion(info));
                 dispatch(answerUserQuestion(info));
                 dispatch(hideLoading());
@@ -50,8 +50,8 @@ export function handleAddQuestion(optionOne, optionTwo) {
             optionOneText: optionOne,
             optionTwoText: optionTwo,
             author: authedUser
-        }).
-        then((question) => {
+        })
+        .then((question) => {
                 dispatch(addQuestion(question));
                 dispatch(addQuestionToUser({
                     question,

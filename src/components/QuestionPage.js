@@ -44,7 +44,7 @@ const QuestionPage = (props) => {
     return (
         <div className="center">
         <h3>Poll by {author}</h3>
-        <img className="big-avatar" src={avatar} />
+        <img className="big-avatar" alt={"avatar"} src={avatar} />
         <h2>Would You Rather</h2>
         <div className="question-response">
             <div className="question-option">
