@@ -1,5 +1,4 @@
 import { showLoading, hideLoading} from "react-redux-loading-bar"
-import { saveQuestion } from "../utils/api"
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS"
 export const ADD_QUESTION = "ADD_QUESTION"
@@ -28,27 +27,5 @@ export function addQuestion(info) {
     return {
         type: ADD_QUESTION,
         question: info
-    };
-}
-
-export function handleAddQuestion(optionOne, optionTwo) {
-    return (dispatch, getState) => {
-        const {authedUser} = getState();
-
-        dispatch(showLoading());
-
-        saveQuestion({
-            optionOneText: optionOne,
-            optionTwoText: optionTwo,
-            author: authedUser
-        }).
-        then((question) => {
-                dispatch(addQuestion(question));
-                dispatch(hideLoading());
-            })
-            .catch((e) => {
-                console.warn("Error in Add a new tweet: ", e);
-                alert("There was an error in add a new tweet. Try again.");
-            });
     };
 }

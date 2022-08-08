@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ANSWER_ONE, ANSWER_TWO } from "../actions/questions";
-import { handleAddQuestion } from "../actions/questions";
+import { handleAddQuestion } from "../actions/shared";
 import { useState } from "react";
 
 const QuestionPage = ({ dispatch, id }) => {

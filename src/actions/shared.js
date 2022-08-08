@@ -2,13 +2,14 @@ import { getInitialData } from "../utils/api"
 import { addQuestion, receiveQuestions } from "./questions"
 import { receiveUsers } from "./users"
 import { showLoading, hideLoading} from "react-redux-loading-bar"
-import { setAuthedUser } from "./authedUser"
 import { answerQuestion } from "./questions"
 import { answerUserQuestion } from "./users"
 import { saveQuestionAnswer } from "../utils/api"
+import { saveQuestion } from "../utils/api"
+import { addQuestionToUser } from "./users"
 
-// TODO: Remove, only development propuse
-const AUTHED_ID = "sarahedo"
+import { setAuthedUser } from "../actions/authedUser";
+const AHUT_ID = "sarahedo"
 
 export function handleInitialData() {
     return (dispatch) => {
@@ -16,11 +17,9 @@ export function handleInitialData() {
         return getInitialData().then(({users, questions}) => {
             dispatch(receiveUsers(users));
             dispatch(receiveQuestions(questions));
-            
-            // TODO: Remove, only development propuse
-            dispatch(setAuthedUser(AUTHED_ID));
-            
             dispatch(hideLoading());
+
+            dispatch(setAuthedUser(AHUT_ID));
         })
     }
 }
@@ -42,6 +41,32 @@ export function handleAnswerQuestion(info) {
             .catch((e) => {
                 console.warn("Error in Save the answer: ", e);
                 alert("There was an error in save the answer. Try again.");
+            });
+    };
+}
+
+export function handleAddQuestion(optionOne, optionTwo) {
+    return (dispatch, getState) => {
+        const {authedUser} = getState();
+
+        dispatch(showLoading());
+
+        saveQuestion({
+            optionOneText: optionOne,
+            optionTwoText: optionTwo,
+            author: authedUser
+        }).
+        then((question) => {
+                dispatch(addQuestion(question));
+                dispatch(addQuestionToUser({
+                    question,
+                    authedUser
+                }));
+                dispatch(hideLoading());
+            })
+            .catch((e) => {
+                console.warn("Error in Add a new tweet: ", e);
+                alert("There was an error in add a new tweet. Try again.");
             });
     };
 }
