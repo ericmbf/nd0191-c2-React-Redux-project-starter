@@ -8,12 +8,14 @@ function isNewQuestion(array, isValid) {
 }
 
 const Dashboard = (props) => {
+  const questions = props.questions;
+
   return <div>
     <h3 className="center">New Questions</h3>
     <ul className="dashboard-list">
       {
         props.newQuestionsId && props.newQuestionsId.map((id) => {
-          return <QuestionCard key={id} id={id} />
+          return <QuestionCard key={id} id={id} question={questions[id]} />
         })
       }
     </ul>
@@ -21,7 +23,7 @@ const Dashboard = (props) => {
     <ul className="dashboard-list">
       {
           props.doneQuestionsId && props.doneQuestionsId.map((id) => {
-          return <QuestionCard key={id} id={id} />
+          return <QuestionCard key={id} id={id} question={questions[id]} />
         })
       }
     </ul>
@@ -36,7 +38,8 @@ function mapStateToProps({ questions, authedUser }) {
   
   return {
     newQuestionsId: questions ? newQuestionsId : null,
-    doneQuestionsId: questions ? doneQuestionsId: null
+    doneQuestionsId: questions ? doneQuestionsId: null,
+    questions: questions
   }
 }
 

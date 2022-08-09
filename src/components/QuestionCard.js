@@ -1,13 +1,12 @@
-import { connect } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import {formatDate } from "../utils/helpers"
 
 const QuestionCard = (props) => {
 
   const navigate = useNavigate();
-  
-  const { author, timestamp} = props.question;
   const id = props.id;
+  const question = props.question;
+  const { author, timestamp} = question;
 
   const toParent = (e, id) => {
     e.preventDefault();
@@ -25,15 +24,4 @@ const QuestionCard = (props) => {
   </Link>
 };
 
-function mapStateToProps({ questions }, { id }) {
-  const question = questions[id];
-
-  return {
-    question: question ? {
-      author: question.author,
-      timestamp: question.timestamp,
-    } : null,
-  };
-}
-
-export default connect(mapStateToProps)(QuestionCard);
+export default QuestionCard;
