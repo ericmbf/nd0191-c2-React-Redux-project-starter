@@ -58,7 +58,7 @@ const LoginPage = ({ dispatch, users }) => {
 
 const mapStateToProps = ({ users }) => {
   return {
-    users: users
+    users: users ? users : null
   }
 }
 
