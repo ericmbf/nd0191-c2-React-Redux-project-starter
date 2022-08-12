@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { setAuthedUser } from "../actions/authedUser";
 import useAuth from "./useAuth";
 
 const LoginPage = ({ dispatch, users }) => {
 
   const [username, setUsername] = useState("");
-  const { login } = useAuth();
+  const { login, logout } = useAuth();
+  const { state } = useLocation();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -15,7 +16,7 @@ const LoginPage = ({ dispatch, users }) => {
     setUsername("");
     login(username).then(() => {
       dispatch(setAuthedUser(username));
-      navigate("/");
+      navigate(state?.path || "/");
     });
   }
 
@@ -23,6 +24,10 @@ const LoginPage = ({ dispatch, users }) => {
     e.preventDefault();
     setUsername(e.target.value);
   }
+
+  useEffect(() => {
+    logout();
+  }, []);
 
   return (
     <div>

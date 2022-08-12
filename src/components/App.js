@@ -5,7 +5,7 @@ import Dashboard from "./Dashboard";
 import { LoadingBar } from "react-redux-loading-bar"
 import LoginPage from "./LoginPage";
 import QuestionPage from "./QuestionPage";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import NewQuestion from "./newQuestion";
 import Leaderboard from "./Leaderboard";
 import Nav from "./Nav"
@@ -15,9 +15,11 @@ import useAuth from "./useAuth";
 const App = (props) => {
 
   const { authed, user } = useAuth();
+  const location = useLocation();
 
   function RequireAuth({ children }) {
-    return authed === 'true' ? children : <Navigate to="/login" replace />;
+    return authed === 'true' ? children : 
+    <Navigate to="/login" replace state={{path: location.pathname}}/>;
   }
 
   useEffect(() => {
@@ -29,28 +31,30 @@ const App = (props) => {
     <LoadingBar />
     <div className="container">
       <Routes>
-        <Route path="/login" element={<LoginPage />}/>
-        <Route path="/"
-          element={<RequireAuth>
-            <Nav/>
-            <Dashboard />
-          </RequireAuth>} />
-        <Route path="/question/:id"
-          element={<RequireAuth>
-            <Nav/>
-            <QuestionPage />
-          </RequireAuth>} />
-        <Route path="/add" exact
-          element={<RequireAuth>
-            <Nav/>
-            <NewQuestion />
-          </RequireAuth>} />
-        <Route path="/leaderboard" exact
-          element={<RequireAuth>
-            <Nav/>
-            <Leaderboard />
-          </RequireAuth>} />
-          <Route path="/*" element={<PageNotFound />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" exact element={<RequireAuth>
+              <Nav />
+              <Dashboard />
+            </RequireAuth>} />
+          <Route path="/question/:id"
+              exact element={<RequireAuth>
+              <Nav />
+              <QuestionPage />
+            </RequireAuth>} />
+          <Route path="/add"
+            element={<RequireAuth>
+              <Nav />
+              <NewQuestion />
+            </RequireAuth>} />
+          <Route path="/leaderboard"
+            element={<RequireAuth>
+              <Nav />
+              <Leaderboard />
+            </RequireAuth>} />
+          <Route path="*" 
+          element={
+              <PageNotFound />
+          } />
       </Routes>
     </div>
   </Fragment>
