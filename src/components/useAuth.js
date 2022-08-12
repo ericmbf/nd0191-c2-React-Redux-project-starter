@@ -5,8 +5,7 @@ const authContext = createContext();
 function useAuth() {
   const LOGGED_KEY = 'isLogged'
   const USERNAME_KEY = 'user'
-  const [authed, setAuthed] =
-    useState(sessionStorage.getItem(LOGGED_KEY));
+  const [authed, setAuthed] = useState(false);
   const [user, setUser] =
     useState(sessionStorage.getItem(USERNAME_KEY));
 
