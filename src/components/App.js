@@ -9,6 +9,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import NewQuestion from "./newQuestion";
 import Leaderboard from "./Leaderboard";
 import Nav from "./Nav"
+import PageNotFound from "./PageNotFound";
 import useAuth from "./useAuth";
 
 const App = (props) => {
@@ -49,6 +50,7 @@ const App = (props) => {
             <Nav/>
             <Leaderboard />
           </RequireAuth>} />
+          <Route path="/*" element={<PageNotFound />} />
       </Routes>
     </div>
   </Fragment>

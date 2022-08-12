@@ -75,27 +75,32 @@ const QuestionPage = (props) => {
 function mapStateToProps({ questions, users, authedUser }, props) {
     const { id } = props.router.params;
     const question = questions !== {} ? questions[id] : null;
-    const avatar = question ? users[question.author].avatarURL : null;
-    const done =  questions[id].optionOne.votes.includes(authedUser) ||
-        questions[id].optionTwo.votes.includes(authedUser);
-
-    return {
-        author: question ? questions[id].author : null,
-        avatar: question ? avatar : null,
-        optionOne: question ? questions[id].optionOne.text : null,
-        optionTwo: question ? questions[id].optionTwo.text : null,
-        done: done,
-        votes1: questions[id].optionOne.votes.length,
-        percent1: questions[id].optionOne.votes.length /
-            (questions[id].optionOne.votes.length + 
-            questions[id].optionTwo.votes.length),
-        votes2: questions[id].optionTwo.votes.length,
-        percent2: questions[id].optionTwo.votes.length /
-            (questions[id].optionOne.votes.length + 
-            questions[id].optionTwo.votes.length),
-        active1: questions[id].optionOne.votes.includes(authedUser),
-        active2: questions[id].optionTwo.votes.includes(authedUser)
+    
+    if(question){
+        const avatar = users[question.author].avatarURL;
+        const done =  questions[id].optionOne.votes.includes(authedUser) ||
+            questions[id].optionTwo.votes.includes(authedUser);
+        return {
+            author: questions[id].author,
+            avatar: avatar,
+            optionOne: questions[id].optionOne.text,
+            optionTwo: questions[id].optionTwo.text,
+            done: done,
+            votes1: questions[id].optionOne.votes.length,
+            percent1: questions[id].optionOne.votes.length /
+                (questions[id].optionOne.votes.length + 
+                questions[id].optionTwo.votes.length),
+            votes2: questions[id].optionTwo.votes.length,
+            percent2: questions[id].optionTwo.votes.length /
+                (questions[id].optionOne.votes.length + 
+                questions[id].optionTwo.votes.length),
+            active1: questions[id].optionOne.votes.includes(authedUser),
+            active2: questions[id].optionTwo.votes.includes(authedUser)
+        }  
     }
+
+    return null;
+    
 }
 
 export default withRouter(connect(mapStateToProps)(QuestionPage));
