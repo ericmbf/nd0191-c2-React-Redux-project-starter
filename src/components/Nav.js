@@ -2,16 +2,19 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser"
 import { useNavigate } from "react-router-dom";
+import useAuth from "./useAuth";
 
 const Nav = (props) => {
 
+    const { authed, logout } = useAuth();
     const { name, avatar } = props;
     const navigate = useNavigate();
 
     const handleLogOut = (e) => {
         e.preventDefault();
         props.dispatch(setAuthedUser(null));
-        navigate('/login');
+        logout();
+        navigate("/login");
     }
 
     return (
