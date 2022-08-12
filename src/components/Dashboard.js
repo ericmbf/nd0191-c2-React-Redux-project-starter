@@ -32,9 +32,13 @@ const Dashboard = (props) => {
 
 function mapStateToProps({ questions, authedUser }) {
   
-  const [newQuestionsId, doneQuestionsId] = isNewQuestion(Object.keys(questions),
+  const orderedQuestions = Object.fromEntries(
+    Object.entries(questions).sort(([,a],[,b]) => b.timestamp -a.timestamp));
+
+  const [newQuestionsId, doneQuestionsId] = isNewQuestion(Object.keys(orderedQuestions),
     (id) => !questions[id].optionOne.votes.includes(authedUser) &&
     !questions[id].optionTwo.votes.includes(authedUser));
+  
   
   return {
     newQuestionsId: questions ? newQuestionsId : null,
