@@ -10,10 +10,10 @@ const QuestionCard = (props) => {
 
   const toParent = (e, id) => {
     e.preventDefault();
-    navigate(`/question/${id}`);
+    navigate(`/questions/${id}`);
   }
 
-  return <Link to={`/question/${id}`} className="question">
+  return <Link to={`/questions/${id}`} className="question">
     <div className="question-info">
       <div>
         <span>{author}</span>
