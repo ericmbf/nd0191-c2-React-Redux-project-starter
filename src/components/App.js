@@ -53,7 +53,13 @@ const App = (props) => {
             </RequireAuth>} />
           <Route path="*" 
           element={
-              <PageNotFound />
+            <Navigate to="/PageNotFound" replace state={{path: location.pathname}}/>
+          } />
+          <Route path="/PageNotFound" 
+          element={
+            <RequireAuth>
+              <PageNotFound/>
+            </RequireAuth>
           } />
       </Routes>
     </div>
