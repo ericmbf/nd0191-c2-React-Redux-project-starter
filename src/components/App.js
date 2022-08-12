@@ -1,5 +1,5 @@
 import { Fragment, useEffect } from "react";
-import { handleInitialData } from "../actions/shared";
+import { handleInitialData, handleUserSession } from "../actions/shared";
 import { connect } from "react-redux";
 import Dashboard from "./Dashboard";
 import { LoadingBar } from "react-redux-loading-bar"
@@ -9,15 +9,19 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import NewQuestion from "./newQuestion";
 import Leaderboard from "./Leaderboard";
 import Nav from "./Nav"
+import useAuth from "./useAuth";
 
 const App = (props) => {
 
+  const { authed, user } = useAuth();
+
   function RequireAuth({ children }) {
-    return props.loggedIn === true ? children : <Navigate to="/login" replace />;
+    return authed === 'true' ? children : <Navigate to="/login" replace />;
   }
 
   useEffect(() => {
     props.dispatch(handleInitialData());
+    props.dispatch(handleUserSession(user));
   }, []);
 
   return (<Fragment>
@@ -54,7 +58,6 @@ const App = (props) => {
 const mapStateToProps = ({ authedUser, users, questions }) => {
   return {
     loading: users !== {} && questions !== {},
-    loggedIn: authedUser !== null
   }
 }
 

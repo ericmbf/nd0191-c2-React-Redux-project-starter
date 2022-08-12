@@ -7,6 +7,7 @@ import { answerUserQuestion } from "./users"
 import { saveQuestionAnswer } from "../utils/api"
 import { saveQuestion } from "../utils/api"
 import { addQuestionToUser } from "./users"
+import { setAuthedUser } from "./authedUser"
 
 export function handleInitialData() {
     return (dispatch) => {
@@ -16,6 +17,12 @@ export function handleInitialData() {
             dispatch(receiveQuestions(questions));
             dispatch(hideLoading());
         })
+    }
+}
+
+export function handleUserSession(user) {
+    return (dispatch) => {
+        dispatch(setAuthedUser(user));
     }
 }
 

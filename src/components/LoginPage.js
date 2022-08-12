@@ -2,18 +2,21 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setAuthedUser } from "../actions/authedUser";
+import useAuth from "./useAuth";
 
 const LoginPage = ({ dispatch, users }) => {
 
-  const [username, setUsername] = useState('sarahedo');
-
+  const [username, setUsername] = useState("");
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setUsername("");
-    dispatch(setAuthedUser(username));
-    navigate("/");
+    login(username).then(() => {
+      dispatch(setAuthedUser(username));
+      navigate("/");
+    });
   }
 
   const handleChange = (e) => {
